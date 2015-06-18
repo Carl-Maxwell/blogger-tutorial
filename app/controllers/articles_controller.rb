@@ -5,6 +5,7 @@ class ArticlesController < ApplicationController
 
   def show
     @article = Article.find(params[:id])
+    @comment = Comment.new(article_id: @article[:id])
   end
 
   def new
@@ -25,7 +26,8 @@ class ArticlesController < ApplicationController
     title = @article.title
     @article.destroy
 
-    flash.notice = "The blood of '#{title}' is on your hands!"
+    flash.notice = "The blood of '#{
+    title}' is on your hands!"
 
     redirect_to articles_path
   end
